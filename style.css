@@ -66,6 +66,7 @@ h2 {
 	justify-content: center;
 	align-items: center;
 	padding: 4rem;
+	max-width: 100%;
 	background-color: color-mix(in srgb, var(--background-color), var(--text-color) 4.7%);
 	border: 1px solid rgba(255, 255, 255, 0.1);
 	border-radius: 1.8rem;
@@ -73,10 +74,21 @@ h2 {
 
 	section#yearMap {
 		width: 100%;
+		min-width: 0;
+		overflow-x: auto;
 		display: grid;
 		grid-template-columns: auto 1fr;
 		grid-template-rows: auto 1fr;
 		gap: 0.8rem;
+		padding-bottom: 0.4rem;
+
+		.weekdayLabels {
+			position: sticky;
+			left: 0;
+			z-index: 1;
+			background-color: color-mix(in srgb, var(--background-color), var(--text-color) 4.7%);
+			padding-right: 0.4rem;
+		}
 
 		.monthLabels {
 			grid-column: 2;
@@ -170,7 +182,7 @@ dialog:open {
 	left: 50%;
 	transform: translate(-50%, -50%);
 	max-width: 44rem;
-	width: 100%;
+	width: calc(100% - 2rem);
 	display: flex;
 	flex-direction: column;
 	justify-content: center;
@@ -312,5 +324,36 @@ button[type="submit"] {
 
 	&:hover {
 		background-color: color-mix(in srgb, var(--primary-color), #fff 10%);
+	}
+}
+
+@media (max-width: 600px) {
+	body {
+		padding: 1.6rem;
+		gap: 1.6rem;
+	}
+
+	h1 {
+		font-size: 2.8rem;
+		text-align: center;
+	}
+
+	h2 {
+		font-size: 2.4rem;
+	}
+
+	.card {
+		padding: 2rem;
+		width: 100%;
+	}
+}
+
+@media (hover: none) {
+	.card section#yearMap {
+		-webkit-overflow-scrolling: touch;
+	}
+
+	.card section#yearMap .day {
+		transition: none;
 	}
 }
