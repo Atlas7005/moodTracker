@@ -1,0 +1,52 @@
+<!doctype html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Mood Tracker</title>
+
+		<link rel="stylesheet" href="style.css" />
+		<script src="js/script.js" type="module"></script>
+	</head>
+	<body>
+		<h1>Yearly Mood Tracker</h1>
+		<div class="card">
+			<h2 id="currentYear">0000</h2>
+			<section id="yearMap"></section>
+			<button type="submit" id="logMood">Log Mood</button>
+		</div>
+
+		<dialog id="logDialog">
+			<h2 id="logDate">-------------</h2>
+			<label for="logMoodSelect">Mood: <span class="required">* required</span></label>
+			<select name="logMood" id="logMoodSelect" required>
+				<option value="">Select one</option>
+				<option value="very-good">Very Good</option>
+				<option value="good">Good</option>
+				<option value="neutral">Neutral</option>
+				<option value="bad">Bad</option>
+				<option value="very-bad">Very Bad</option>
+			</select>
+
+			<label for="logNote">Note:</label>
+			<textarea name="logNote" id="logNote" cols="40" rows="4" placeholder="Write a note about your day"></textarea>
+
+			<button type="submit" id="logSubmit">Submit</button>
+		</dialog>
+
+		<dialog id="viewDialog">
+			<h2 id="viewDate">-------------</h2>
+
+			<label>Mood:</label>
+			<p id="viewMood" class="viewValue"></p>
+
+			<label>Note:</label>
+			<p id="viewNote" class="viewValue viewNote"></p>
+
+			<div class="dialogButtons">
+				<button type="submit" id="viewDelete" class="danger">Delete</button>
+				<button type="submit" id="viewClose">Close</button>
+			</div>
+		</dialog>
+	</body>
+</html>

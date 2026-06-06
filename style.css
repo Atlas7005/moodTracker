@@ -1,0 +1,316 @@
+@import url(https://fonts.googleapis.com/css?family=Inter:100,200,300,regular,500,600,700,800,900,100italic,200italic,300italic,italic,500italic,600italic,700italic,800italic,900italic);
+
+*,
+*::before,
+*::after {
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+}
+
+:root {
+	--background-color: #121218;
+	--background-color-light: #424246;
+	--text-color: #fff;
+	--primary-color: #8031da;
+
+	--very-good: #23ad44;
+	--good: #50de71;
+	--neutral: #d7da3e;
+	--bad: #da6a3e;
+	--very-bad: #e93838;
+
+	--mood-factor: 80%;
+}
+
+:focus {
+	outline: none;
+}
+
+html {
+	font-size: 62.5%;
+}
+
+body {
+	font-size: 1.6rem;
+	font-family: "Inter", Arial, Helvetica, sans-serif;
+	min-height: 100dvh;
+	padding: 4rem;
+	background-color: #121218;
+	color: #fff;
+
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	flex-direction: column;
+	gap: 2rem;
+}
+
+h1,
+h2 {
+	font-weight: 700;
+	line-height: 1.2;
+}
+
+h1 {
+	font-size: 3.6rem;
+}
+
+h2 {
+	font-size: 3.2rem;
+}
+
+.card {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	padding: 4rem;
+	background-color: color-mix(in srgb, var(--background-color), var(--text-color) 4.7%);
+	border: 1px solid rgba(255, 255, 255, 0.1);
+	border-radius: 1.8rem;
+	gap: 1.8rem;
+
+	section#yearMap {
+		width: 100%;
+		display: grid;
+		grid-template-columns: auto 1fr;
+		grid-template-rows: auto 1fr;
+		gap: 0.8rem;
+
+		.monthLabels {
+			grid-column: 2;
+			display: grid;
+			grid-auto-flow: column;
+			grid-auto-columns: 1.6rem;
+			gap: 0.4rem;
+		}
+
+		.weekdayLabels {
+			grid-row: 2;
+			display: grid;
+			grid-template-rows: repeat(7, 1.6rem);
+			gap: 0.4rem;
+		}
+
+		.dayGrid {
+			grid-column: 2;
+			grid-row: 2;
+			display: grid;
+			grid-auto-flow: column;
+			grid-auto-columns: 1.6rem;
+			grid-template-rows: repeat(7, 1.6rem);
+			gap: 0.4rem;
+		}
+
+		.day {
+			width: 1.6rem;
+			height: 1.6rem;
+			background-color: var(--background-color-light);
+			border-radius: 0.2rem;
+			transition: background-color 0.25s;
+
+			cursor: pointer;
+
+			&:hover {
+				background-color: color-mix(in srgb, var(--background-color-light), #fff 7%);
+			}
+
+			&.very-good {
+				background-color: color-mix(in srgb, var(--background-color-light), var(--very-good) var(--mood-factor));
+
+				&:hover {
+					background-color: color-mix(in srgb, var(--background-color-light), var(--very-good) calc(var(--mood-factor) * 1.1));
+				}
+			}
+
+			&.good {
+				background-color: color-mix(in srgb, var(--background-color-light), var(--good) var(--mood-factor));
+
+				&:hover {
+					background-color: color-mix(in srgb, var(--background-color-light), var(--good) calc(var(--mood-factor) * 1.35));
+				}
+			}
+
+			&.neutral {
+				background-color: color-mix(in srgb, var(--background-color-light), var(--neutral) var(--mood-factor));
+
+				&:hover {
+					background-color: color-mix(in srgb, var(--background-color-light), var(--neutral) calc(var(--mood-factor) * 1.35));
+				}
+			}
+
+			&.bad {
+				background-color: color-mix(in srgb, var(--background-color-light), var(--bad) var(--mood-factor));
+
+				&:hover {
+					background-color: color-mix(in srgb, var(--background-color-light), var(--bad) calc(var(--mood-factor) * 1.35));
+				}
+			}
+
+			&.very-bad {
+				background-color: color-mix(in srgb, var(--background-color-light), var(--very-bad) var(--mood-factor));
+
+				&:hover {
+					background-color: color-mix(in srgb, var(--background-color-light), var(--very-bad) calc(var(--mood-factor) * 1.35));
+				}
+			}
+		}
+	}
+}
+
+::backdrop {
+	background: rgba(0, 0, 0, 0.333333);
+	backdrop-filter: blur(6px);
+}
+
+dialog:open {
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+	max-width: 44rem;
+	width: 100%;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	padding: 2.4rem;
+	background-color: color-mix(in srgb, var(--background-color), var(--text-color) 4.7%);
+	border: 1px solid rgba(255, 255, 255, 0.1);
+	border-radius: 1.8rem;
+	color: var(--text-color);
+
+	h2 {
+		margin-bottom: 1.6rem;
+		text-align: center;
+	}
+
+	label {
+		display: block;
+		margin-bottom: 0.4rem;
+	}
+
+	label .required {
+		color: #ff4040;
+		font-size: 1.2rem;
+		vertical-align: super;
+	}
+
+	.viewValue {
+		width: 100%;
+		min-height: 4rem;
+		background-color: var(--background-color-light);
+		border: 1px solid rgba(255, 255, 255, 0.1);
+		border-radius: 0.7rem;
+		padding: 0.7rem;
+		margin-bottom: 1.2rem;
+		display: flex;
+		align-items: center;
+		gap: 0.8rem;
+	}
+
+	.viewNote {
+		min-height: 8rem;
+		align-items: flex-start;
+		white-space: pre-wrap;
+		overflow-wrap: anywhere;
+
+		&.empty {
+			color: color-mix(in srgb, var(--text-color), var(--background-color) 45%);
+			font-style: italic;
+		}
+	}
+
+	#viewMood::before {
+		content: "";
+		width: 1.2rem;
+		height: 1.2rem;
+		border-radius: 50%;
+		flex-shrink: 0;
+		background-color: var(--background-color-light);
+	}
+
+	#viewMood[data-mood="very-good"]::before {
+		background-color: var(--very-good);
+	}
+
+	#viewMood[data-mood="good"]::before {
+		background-color: var(--good);
+	}
+
+	#viewMood[data-mood="neutral"]::before {
+		background-color: var(--neutral);
+	}
+
+	#viewMood[data-mood="bad"]::before {
+		background-color: var(--bad);
+	}
+
+	#viewMood[data-mood="very-bad"]::before {
+		background-color: var(--very-bad);
+	}
+
+	select {
+		width: 100%;
+		background-color: var(--background-color-light);
+		color: var(--text-color);
+		font-family: inherit;
+		border: 1px solid rgba(255, 255, 255, 0.1);
+		border-radius: 0.7rem;
+		padding: 0.7rem;
+		margin-bottom: 1.2rem;
+	}
+
+	textarea {
+		width: 100%;
+		background-color: var(--background-color-light);
+		color: var(--text-color);
+		font-family: inherit;
+		border: 1px solid rgba(255, 255, 255, 0.1);
+		border-radius: 0.7rem;
+		padding: 0.7rem;
+		margin-bottom: 1.2rem;
+		resize: none;
+
+		&::placeholder {
+			color: color-mix(in srgb, var(--text-color), var(--background-color) 45%);
+		}
+	}
+
+	button {
+		width: 100%;
+		max-width: none;
+	}
+
+	.dialogButtons {
+		display: flex;
+		gap: 1.2rem;
+	}
+}
+
+button[type="submit"].danger {
+	background-color: var(--very-bad);
+
+	&:hover {
+		background-color: color-mix(in srgb, var(--very-bad), #fff 10%);
+	}
+}
+
+button[type="submit"] {
+	background-color: var(--primary-color);
+	border: none;
+	padding: 1.2rem;
+	font-family: inherit;
+	font-weight: 500;
+	width: 100%;
+	max-width: 20rem;
+	border-radius: 0.7rem;
+	font-size: 1.8rem;
+	color: inherit;
+	cursor: pointer;
+	transition: background-color 0.25s;
+
+	&:hover {
+		background-color: color-mix(in srgb, var(--primary-color), #fff 10%);
+	}
+}
